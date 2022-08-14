@@ -14,13 +14,13 @@ public class Window {
     private int width;
     private static Window window;
     private long windowID;
-    Shader shader;
+    private Level level;
 
     private Window() {
+        level = new Level();
         title = "LearningOpenGL";
         width = 1280;
         height = 720;
-        shader = new Shader();
     }
 
     public void run() {
@@ -67,6 +67,7 @@ public class Window {
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        level.init();
     }
 
     private void loop() {
@@ -79,8 +80,7 @@ public class Window {
             glClearColor(1, 1, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            shader.init();
-            shader.update();
+            level.update();
             glfwSwapBuffers(windowID);
 
             endTime = (float) glfwGetTime();
