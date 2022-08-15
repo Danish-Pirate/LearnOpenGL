@@ -1,6 +1,9 @@
 import java.io.IOException;
+import java.nio.FloatBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.joml.*;
+import org.lwjgl.BufferUtils;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
@@ -18,10 +21,10 @@ public class Shader {
     public void init() {
         float[] vertices = {
                 // Position             Color                   Tex coords
-                 0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right
-                 0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right
-                 0.0f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left
-                 0.0f,  0.5f, 0.0f,     0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left
+                100.0f,  100.0f, -50.0f,  0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right
+                100.0f, -100.0f, -50.0f,  1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right
+                0.0f, -100.0f, -50.0f,    0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left
+                0.0f,  100.0f, -50.0f,    0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left
         };
 
         int[] indices = {
@@ -103,5 +106,12 @@ public class Shader {
     public void uploadTexture(String varName, int textureSlot) {
         use();
         glUniform1i(glGetUniformLocation(shaderProgramID, varName), textureSlot);
+    }
+
+    public void uploadMat4f(String varName, Matrix4f matrix) {
+        use();
+        FloatBuffer matBuffer = BufferUtils.createFloatBuffer(16);
+        matrix.get(matBuffer);
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, varName), false, matBuffer);
     }
 }

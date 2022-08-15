@@ -18,7 +18,7 @@ public class Window {
 
     private Window() {
         level = new Level();
-        title = "LearningOpenGL";
+        title = "OpenGL";
         width = 1280;
         height = 720;
     }
@@ -102,6 +102,14 @@ public class Window {
 
     public static void setHeight(int newHeight) {
         getWindow().height = newHeight;
+    }
+
+    public static int getHeight() {
+        return getWindow().height;
+    }
+
+    public static int getWidth() {
+        return getWindow().width;
     }
 }
 
