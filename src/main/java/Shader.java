@@ -21,15 +21,15 @@ public class Shader {
     public void init() {
         float[] vertices = {
                 // Position             Color                   Tex coords
-                100.0f,  100.0f, -50.0f,  0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right 0
-                100.0f, -100.0f, -50.0f,  1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 1  Front quad
-                0.0f, -100.0f, -50.0f,    0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 2
-                0.0f,  100.0f, -50.0f,    0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left 3
+                0.5f,  0.5f, 0.0f,  0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right 0
+                0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 1  Front quad
+                0.0f, -0.5f, 0.0f,    0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 2
+                0.0f,  0.5f, 0.0f,    0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left 3
 
-                100.0f,  100.0f, -100.0f,  0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 4
-                100.0f, -100.0f, -100.0f,  1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 5  Back quad
-                0.0f, -100.0f, -100.0f,    0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 6
-                0.0f,  100.0f, -100.0f,    0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 7
+                0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 4
+                0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 5  Back quad
+                0.0f, -0.5f, -0.5f,    0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 6
+                0.0f,  0.5f, -0.5f,    0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 7
         };
 
         int[] indices = {
@@ -39,8 +39,8 @@ public class Shader {
                 5, 4, 7, // Back face
                 7, 6, 5,
 
-                0, 4, 6, // Right face
-                0, 6, 1,
+                0, 4, 1, // Right face
+                4, 5, 1,
 
                 3, 7, 6,
                 6, 2, 3, // Left face

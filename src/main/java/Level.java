@@ -18,7 +18,7 @@ public class Level {
         shader.init();
         shader.compile();
 
-        Texture t1 = new Texture("src/main/resources/images/grass.png", 1);
+        Texture t1 = new Texture("src/main/resources/images/img.png", 1);
         Texture t2 = new Texture("src/main/resources/images/goose.jpg", 2);
 
         shader.uploadTexture("Texture1", 1);
@@ -29,7 +29,7 @@ public class Level {
         Matrix4f modelMatrix = new Matrix4f();
 
         projectionMatrix.identity();
-        projectionMatrix.perspective(1.5708f, Window.getWidth() / Window.getHeight(), 0.0f, 100.0f);
+        projectionMatrix.perspective(1.5708f, Window.getWidth() / Window.getHeight(), 0.1f, 10000.0f);
 
         Vector3f position = new Vector3f(0.0f, 0.0f, 200.0f);
         Vector3f cameraFront = new Vector3f(position.x, position.y, -1.0f);
@@ -37,8 +37,8 @@ public class Level {
         viewMatrix.identity();
         viewMatrix.lookAt(position, cameraFront, cameraUp);
 
-        modelMatrix.translate(-200.0f, 0.0f, 0.0f);
-        modelMatrix.scale(1.0f);
+        modelMatrix.translate(0.0f, 0.0f, 0.0f);
+        modelMatrix.scale(500.0f);
 
         shader.uploadMat4f("Projection", projectionMatrix);
         shader.uploadMat4f("View", viewMatrix);
@@ -61,6 +61,14 @@ public class Level {
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
             viewMatrix.translate(0.0f, -10.0f, 0f);
+            shader.uploadMat4f("View", viewMatrix);
+        }
+        if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
+            viewMatrix.translate(0.0f, 0.0f, 10.0f);
+            shader.uploadMat4f("View", viewMatrix);
+        }
+        if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
+            viewMatrix.translate(0.0f, 0.0f, -10.0f);
             shader.uploadMat4f("View", viewMatrix);
         }
     }
