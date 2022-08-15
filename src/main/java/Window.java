@@ -65,6 +65,7 @@ public class Window {
         glfwShowWindow(windowID);
         GL.createCapabilities();
 
+        glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
