@@ -65,9 +65,11 @@ public class Window {
         glfwShowWindow(windowID);
         GL.createCapabilities();
 
+        //glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         level.init();
+
     }
 
     private void loop() {
@@ -78,8 +80,8 @@ public class Window {
         while (!glfwWindowShouldClose(windowID)) {
             glfwPollEvents();
             glClearColor(1, 1, 1, 1);
-            glClear(GL_COLOR_BUFFER_BIT);
-
+            glClear(GL_COLOR_BUFFER_BIT );
+            glClear(GL_DEPTH_BUFFER_BIT);
             level.update();
             glfwSwapBuffers(windowID);
 

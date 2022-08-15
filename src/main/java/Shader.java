@@ -21,15 +21,35 @@ public class Shader {
     public void init() {
         float[] vertices = {
                 // Position             Color                   Tex coords
-                100.0f,  100.0f, -50.0f,  0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right
-                100.0f, -100.0f, -50.0f,  1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right
-                0.0f, -100.0f, -50.0f,    0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left
-                0.0f,  100.0f, -50.0f,    0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left
+                100.0f,  100.0f, -50.0f,  0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right 0
+                100.0f, -100.0f, -50.0f,  1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 1  Front quad
+                0.0f, -100.0f, -50.0f,    0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 2
+                0.0f,  100.0f, -50.0f,    0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left 3
+
+                100.0f,  100.0f, -100.0f,  0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 4
+                100.0f, -100.0f, -100.0f,  1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 5  Back quad
+                0.0f, -100.0f, -100.0f,    0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 6
+                0.0f,  100.0f, -100.0f,    0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 7
         };
 
         int[] indices = {
-                0, 1, 3,   // first triangle
-                1, 2, 3    // second triangle
+                0, 1, 3,
+                3, 2, 1, //Front face
+
+                5, 4, 7, // Back face
+                7, 6, 5,
+
+                0, 4, 6, // Right face
+                0, 6, 1,
+
+                3, 7, 6,
+                6, 2, 3, // Left face
+
+                0, 4, 3, // Top face
+                4, 7, 3,
+
+                6, 2, 5, // Bottom face
+                2, 1, 5,
         };
 
         vaoID = glGenVertexArrays();
@@ -70,7 +90,7 @@ public class Shader {
     }
 
     public void update() {
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
 
     public void compile() {
