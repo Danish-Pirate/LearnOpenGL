@@ -22,54 +22,54 @@ public class Shader {
         float[] vertices = {
                 // Position             Color                   Tex coords
                 0.5f,  0.5f, 0.0f,      0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right 0
-                0.5f, -0.5f, 0.0f,      1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 1  Front quad
-                0.0f, -0.5f, 0.0f,      0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 2
+                0.0f, -0.5f, 0.0f,      0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 1
+                0.5f, -0.5f, 0.0f,      1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 2  Front quad
                 0.0f,  0.5f, 0.0f,      0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left 3
 
                 0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 4
-                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 5  Back quad
-                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 6
+                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 5
+                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 6  Back quad
                 0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 7
 
                 0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 8
-                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 9  Right quad *
-                0.5f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 10 = bottom right FQ *
+                0.5f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 9 = bottom right FQ *
+                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 10  Right quad *
                 0.5f,  0.5f,  0.0f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 11 = top right FQ *
 
                 0.0f,  0.5f,  0.0f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 12 = top left FQ *
-                0.0f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 13 = bottom left FQ  Left quad *
-                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 14 = bottom left BQ *
+                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 13 = bottom left BQ *
+                0.0f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 14 = bottom left FQ  Left quad *
                 0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 15 = top left BQ *
 
                 0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 16 = top right BQ *
-                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 17 = top right FQ * Top quad
-                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 18 = top left FQ *
+                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 17 = top left FQ *
+                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 18 = top right FQ * Top quad
                 0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 19 = top left BQ *
 
                 0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 20 = bottom right BQ *
-                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 21 = bottom right FQ * Bottom quad
-                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 22 = bottom left FQ *
+                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 21 = bottom left FQ *
+                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 22 = bottom right FQ * Bottom quad
                 0.0f, -0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 23 = bottom left BQ
         };
 
         int[] indices = {
-                2, 1, 0,
-                2, 0, 3, //Front quad
+                0, 1, 2,
+                3, 1, 0, //Front quad
 
                 6, 5, 4, // Back quad
-                6, 4, 7,
+                4, 5, 7,
 
-                10, 9, 8, // Right quad
-                10, 8, 11,
+                8, 9, 10, // Right quad
+                11, 9, 8,
 
-                14, 13, 12,
-                14, 12, 15, // Left quad
+                12, 13, 14,
+                15, 13, 12, // Left quad
 
-                18, 17, 16, // Top quad
-                18, 16, 19,
+                16, 17, 18, // Top quad
+                19, 17, 16,
 
                 22, 21, 20, // Bottom quad
-                22, 20, 23,
+                20, 21, 23,
         };
 
         vaoID = glGenVertexArrays();
