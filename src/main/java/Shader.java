@@ -109,7 +109,7 @@ public class Shader {
         glEnableVertexAttribArray(2);
     }
 
-    public void update() {
+    public void update(float dt) {
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
 

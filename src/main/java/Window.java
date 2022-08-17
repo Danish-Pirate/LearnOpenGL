@@ -70,7 +70,7 @@ public class Window {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
+        //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
         level.init();
 
     }
@@ -81,11 +81,12 @@ public class Window {
         float dt = -1.0f;
 
         while (!glfwWindowShouldClose(windowID)) {
+            processInput();
             glfwPollEvents();
             glClearColor(1, 1, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
             glClear(GL_DEPTH_BUFFER_BIT);
-            level.update();
+            level.update(dt);
             glfwSwapBuffers(windowID);
 
             endTime = (float) glfwGetTime();
@@ -99,6 +100,11 @@ public class Window {
         glfwDestroyWindow(windowID);
         glfwTerminate();
         glfwSetErrorCallback(null).free();
+    }
+
+    public void processInput() {
+        if (KeyListener.isKeyPressed(GLFW_KEY_ESCAPE))
+            glfwSetWindowShouldClose(windowID, true);
     }
 
     public static void setWidth(int newWidth) {
