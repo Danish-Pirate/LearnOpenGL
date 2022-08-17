@@ -4,11 +4,13 @@ import org.joml.Vector3f;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Camera {
-    private Matrix4f projectionMatrix;
-    private Matrix4f modelMatrix;
-    private Matrix4f viewMatrix;
-    private Vector3f cameraPosition;
-    private Vector3f cameraRotation;
+    private final Matrix4f projectionMatrix;
+    private final Matrix4f modelMatrix;
+    private final Matrix4f viewMatrix;
+    private final Vector3f cameraPosition;
+    private final Vector3f cameraFront;
+    private final Vector3f cameraUp;
+    private final Vector3f cameraRight;
 
     public Camera() {
         projectionMatrix = new Matrix4f();
@@ -18,10 +20,12 @@ public class Camera {
         setProjection();
 
         modelMatrix.translate(0.0f, 0.0f, -500.0f);
-        modelMatrix.scale(500.0f);
+        modelMatrix.scale(50.0f);
 
-        cameraPosition = new Vector3f(0.0f, 0.0f, 0.0f);
-        cameraRotation = new Vector3f(0, 0,0);
+        cameraPosition = new Vector3f(0.0f, 0.0f, 3.0f);
+        cameraFront = new Vector3f(0.0f, 0.0f, -1.0f);
+        cameraUp = new Vector3f(0.0f, 1.0f, 0.0f);
+        cameraRight = new Vector3f(1.0f, 0.0f, 0.0f);
     }
 
     private void setProjection() {
@@ -30,10 +34,12 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
+        Vector3f cameraDirection = new Vector3f();
+        cameraRight.cross(cameraFront, cameraUp);
+        cameraPosition.add(cameraFront, cameraDirection);
+
         viewMatrix.identity();
-        viewMatrix.rotate((float)Math.toRadians(cameraRotation.x), new Vector3f(0, 1, 0))
-                .rotate((float)Math.toRadians(cameraRotation.y), new Vector3f(1, 0, 0));
-        viewMatrix.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
+        viewMatrix.lookAt(cameraPosition, cameraDirection, cameraUp);
         return viewMatrix;
     }
 
@@ -44,48 +50,41 @@ public class Camera {
     public Matrix4f getModelMatrix() {
         return modelMatrix;
     }
-    public void rotateView(Vector3f rotationOffset) {
-        cameraRotation.add(rotationOffset.x, rotationOffset.y, rotationOffset.z);
-    }
-
-    public void moveView(Vector3f positionOffset) {
-        cameraPosition.add(positionOffset.x, positionOffset.y, positionOffset.z);
-    }
 
     public void processPlayerInput(float dt) {
         float cameraRotateSpeed = 10.0f * dt;
-        float cameraMoveSpeed = 200.0f * dt;
+        float cameraMoveSpeed = 2000.0f * dt;
 
-        if (KeyListener.isKeyPressed(GLFW_KEY_D)) {
-            moveView(new Vector3f(cameraMoveSpeed, 0.0f, 0.0f));
-        }
-        if (KeyListener.isKeyPressed(GLFW_KEY_A)) {
-            moveView(new Vector3f(-cameraMoveSpeed, 0.0f, 0.0f));
+        if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
+            cameraPosition.add(cameraFront.mul(cameraMoveSpeed, new Vector3f()));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_S)) {
-            moveView(new Vector3f(0.0f, 0.0f, cameraMoveSpeed));
+            cameraPosition.sub(cameraFront.mul(cameraMoveSpeed, new Vector3f()));
         }
-        if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
-            moveView(new Vector3f(0.0f, 0.0f, -cameraMoveSpeed));
+        if (KeyListener.isKeyPressed(GLFW_KEY_D)) {
+            cameraPosition.add(cameraRight.mul(cameraMoveSpeed, new Vector3f()));
+        }
+        if (KeyListener.isKeyPressed(GLFW_KEY_A)) {
+            cameraPosition.sub(cameraRight.mul(cameraMoveSpeed, new Vector3f()));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
-            moveView(new Vector3f(0.0f, -cameraMoveSpeed, 0.0f));
+            cameraPosition.sub(cameraUp.mul(cameraMoveSpeed, new Vector3f()));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-            moveView(new Vector3f(0.0f, cameraMoveSpeed, 0.0f));
+            cameraPosition.add(cameraUp.mul(cameraMoveSpeed, new Vector3f()));
         }
 
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-            rotateView(new Vector3f(cameraRotateSpeed, 0.0f, 0.0f));
+
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-            rotateView(new Vector3f(-cameraRotateSpeed, 0.0f, 0.0f));
+
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-            rotateView(new Vector3f(0.0f, cameraRotateSpeed, 0.0f));
+
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
-            rotateView(new Vector3f(0.0f, -cameraRotateSpeed, 0.0f));
+
         }
     }
 }
