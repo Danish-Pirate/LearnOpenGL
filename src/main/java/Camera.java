@@ -1,19 +1,12 @@
 import org.joml.Matrix4f;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
-
-import java.util.Vector;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_CONTROL;
 
 public class Camera {
     private Matrix4f projectionMatrix;
     private Matrix4f modelMatrix;
     private Matrix4f viewMatrix;
-    private Vector3f cameraFront;
-    private Vector3f cameraUp;
     private Vector3f cameraPosition;
     private Vector3f cameraRotation;
 
@@ -28,10 +21,7 @@ public class Camera {
         modelMatrix.scale(500.0f);
 
         cameraPosition = new Vector3f(0.0f, 0.0f, 0.0f);
-        cameraFront = new Vector3f(0.0f, 0.0f, -1.0f);
-        cameraUp = new Vector3f(0.0f, 1.0f, 0.0f);
         cameraRotation = new Vector3f(0, 0,0);
-
     }
 
     private void setProjection() {
@@ -40,13 +30,10 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-
-
         viewMatrix.identity();
-        viewMatrix.rotate((float)Math.toRadians(cameraRotation.x), new Vector3f(1, 0, 0))
-                .rotate((float)Math.toRadians(cameraRotation.y), new Vector3f(0, 1, 0));
+        viewMatrix.rotate((float)Math.toRadians(cameraRotation.x), new Vector3f(0, 1, 0))
+                .rotate((float)Math.toRadians(cameraRotation.y), new Vector3f(1, 0, 0));
         viewMatrix.translate(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
-        //viewMatrix.lookAt(cameraPosition, cameraPosition.add(cameraFront, new Vector3f()), cameraUp);
         return viewMatrix;
     }
 
