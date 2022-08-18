@@ -62,6 +62,7 @@ public class Window {
 
         glfwMakeContextCurrent(windowID);
         glfwSwapInterval(1);
+        glfwSetInputMode(windowID, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         glfwShowWindow(windowID);
         GL.createCapabilities();
 

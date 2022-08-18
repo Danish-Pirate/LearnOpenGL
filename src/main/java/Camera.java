@@ -7,10 +7,15 @@ public class Camera {
     private final Matrix4f projectionMatrix;
     private final Matrix4f modelMatrix;
     private final Matrix4f viewMatrix;
+
+
     private final Vector3f cameraPosition;
-    private final Vector3f cameraFront;
+    private Vector3f cameraFront;
     private final Vector3f cameraUp;
-    private final Vector3f cameraRight;
+
+    private float yaw;
+    private float pitch;
+    private boolean firstTimeMoved = true;
 
     public Camera() {
         projectionMatrix = new Matrix4f();
@@ -25,7 +30,9 @@ public class Camera {
         cameraPosition = new Vector3f(0.0f, 0.0f, 3.0f);
         cameraFront = new Vector3f(0.0f, 0.0f, -1.0f);
         cameraUp = new Vector3f(0.0f, 1.0f, 0.0f);
-        cameraRight = new Vector3f(1.0f, 0.0f, 0.0f);
+
+        yaw = -90.0f;
+        pitch = 0.0f;
     }
 
     private void setProjection() {
@@ -34,12 +41,9 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-        Vector3f cameraDirection = new Vector3f();
-        cameraRight.cross(cameraFront, cameraUp);
-        cameraPosition.add(cameraFront, cameraDirection);
 
         viewMatrix.identity();
-        viewMatrix.lookAt(cameraPosition, cameraDirection, cameraUp);
+        viewMatrix.lookAt(cameraPosition, cameraPosition.add(cameraFront, new Vector3f()), cameraUp);
         return viewMatrix;
     }
 
@@ -52,8 +56,7 @@ public class Camera {
     }
 
     public void processPlayerInput(float dt) {
-        float cameraRotateSpeed = 10.0f * dt;
-        float cameraMoveSpeed = 2000.0f * dt;
+        float cameraMoveSpeed = 200.0f * dt;
 
         if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
             cameraPosition.add(cameraFront.mul(cameraMoveSpeed, new Vector3f()));
@@ -62,10 +65,10 @@ public class Camera {
             cameraPosition.sub(cameraFront.mul(cameraMoveSpeed, new Vector3f()));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_D)) {
-            cameraPosition.add(cameraRight.mul(cameraMoveSpeed, new Vector3f()));
+            cameraPosition.add(cameraFront.cross(cameraUp, new Vector3f()).mul(cameraMoveSpeed));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_A)) {
-            cameraPosition.sub(cameraRight.mul(cameraMoveSpeed, new Vector3f()));
+            cameraPosition.sub(cameraFront.cross(cameraUp, new Vector3f()).mul(cameraMoveSpeed));
         }
         if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
             cameraPosition.sub(cameraUp.mul(cameraMoveSpeed, new Vector3f()));
@@ -74,17 +77,22 @@ public class Camera {
             cameraPosition.add(cameraUp.mul(cameraMoveSpeed, new Vector3f()));
         }
 
-        if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-
+        float mouseSensitivity = 0.1f;
+        float xOffset = MouseListener.getDx();
+        float yOffset = MouseListener.getDy();
+        xOffset *= mouseSensitivity;
+        yOffset *= mouseSensitivity;
+        yaw += xOffset;
+        pitch += yOffset;
+        MouseListener.endFrame();
+        if (pitch > 89.0f)
+            pitch = 89.0f;
+        if (pitch < -89.0f)
+            pitch = -89.0f;
+        Vector3f front = new Vector3f();
+        front.x = (float) (Math.cos(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch)));
+        front.y = (float) Math.sin(Math.toRadians(pitch));
+        front.z = (float) (Math.sin(Math.toRadians(yaw)) * Math.cos(Math.toRadians(pitch)));
+        cameraFront.set(front).normalize();
         }
-        if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-
-        }
-        if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-
-        }
-        if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
-
-        }
-    }
 }

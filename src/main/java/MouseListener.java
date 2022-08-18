@@ -7,6 +7,7 @@ public class MouseListener {
     private double xPos, yPos, lastY, lastX;
     private boolean mouseButtonPressed[] = new boolean[3];
     private boolean isDragging;
+    private boolean firstTimeMoved = true;
 
     private MouseListener() {
         scrollX = 0.0;
@@ -29,6 +30,11 @@ public class MouseListener {
         get().lastY = get().yPos;
         get().xPos = xpos;
         get().yPos = ypos;
+        if (get().firstTimeMoved) {
+            get().lastX = xpos;
+            get().lastY = ypos;
+            get().firstTimeMoved = false;
+        }
         get().isDragging = get().mouseButtonPressed[0] || get().mouseButtonPressed[1] || get().mouseButtonPressed[2];
     }
 
@@ -66,7 +72,7 @@ public class MouseListener {
     }
 
     public static float getDx() {
-        return (float) (get().lastX - get().xPos);
+        return (float) (get().xPos - get().lastX);
     }
 
     public static float getDy() {
