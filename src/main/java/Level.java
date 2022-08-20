@@ -12,11 +12,16 @@ public class Level {
         shader.init();
         shader.compile();
 
+        glActiveTexture(GL_TEXTURE1);
         Texture t1 = new Texture("src/main/resources/images/grass.png");
-        glActiveTexture(GL_TEXTURE0);
+        glActiveTexture(GL_TEXTURE2);
+        Texture t2 = new Texture("src/main/resources/images/dirt.jpg");
+        glActiveTexture(GL_TEXTURE3);
+        Texture t3 = new Texture("src/main/resources/images/grass_top.jpg");
 
         shader.uploadTexture("Texture1", 1);
         shader.uploadTexture("Texture2", 2);
+        shader.uploadTexture("Texture3", 3);
 
         camera = new Camera();
     }

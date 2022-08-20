@@ -7,6 +7,7 @@ layout(location = 3) in float aTexId;
 
 out vec3 fColor;
 out vec2 TexCoords;
+out float fTexId;
 
 uniform mat4 Projection;
 uniform mat4 View;
@@ -14,6 +15,7 @@ uniform mat4 Model;
 
 void main() {
     TexCoords = aTexCoords;
+    fTexId = aTexId;
     fColor = aColor;
     gl_Position = Projection * View *  Model * vec4(aPos, 1.0);
 }

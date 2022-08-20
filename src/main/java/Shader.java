@@ -41,15 +41,15 @@ public class Shader {
                 0.0f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 14 = bottom left FQ  Left quad *
                 0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 15 = top left BQ *
 
-                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 16 = top right BQ *
-                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 17 = top left FQ *
-                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 18 = top right FQ * Top quad
-                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 19 = top left BQ *
+                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      3,// top right 16 = top right BQ *
+                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      3,// bottom left 17 = top left FQ *
+                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      3,// bottom right 18 = top right FQ * Top quad
+                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      3,// top left 19 = top left BQ *
 
-                0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 20 = bottom right BQ *
-                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 21 = bottom left FQ *
-                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 22 = bottom right FQ * Bottom quad
-                0.0f, -0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 23 = bottom left BQ
+                0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      2,// top right 20 = bottom right BQ *
+                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      2,// bottom left 21 = bottom left FQ *
+                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      2,// bottom right 22 = bottom right FQ * Bottom quad
+                0.0f, -0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      2,// top left 23 = bottom left BQ
         };
 
         int[] indices = {
