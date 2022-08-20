@@ -20,36 +20,36 @@ public class Shader {
 
     public void init() {
         float[] vertices = {
-                // Position             Color                   Tex coords
-                0.5f,  0.5f, 0.0f,      0.0f, 1.0f, 0.0f,       1.0f, 1.0f,// top right 0
-                0.0f, -0.5f, 0.0f,      0.0f, 0.0f, 1.0f,       0.0f, 0.0f,// bottom left 1
-                0.5f, -0.5f, 0.0f,      1.0f, 0.0f, 0.0f,       1.0f, 0.0f,// bottom right 2  Front quad
-                0.0f,  0.5f, 0.0f,      0.5f, 0.0f, 0.5f,       0.0f, 1.0f,// top left 3
+                // Position             Color                  Tex coords
+                0.5f,  0.5f, 0.0f,      0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 0
+                0.0f, -0.5f, 0.0f,      0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 1
+                0.5f, -0.5f, 0.0f,      1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 2  Front quad
+                0.0f,  0.5f, 0.0f,      0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 3
 
-                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 4
-                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 5
-                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 6  Back quad
-                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 7
+                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 4
+                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 5
+                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 6  Back quad
+                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 7
 
-                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 8
-                0.5f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 9 = bottom right FQ *
-                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 10  Right quad *
-                0.5f,  0.5f,  0.0f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 11 = top right FQ *
+                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 8
+                0.5f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 9 = bottom right FQ *
+                0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 10  Right quad *
+                0.5f,  0.5f,  0.0f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 11 = top right FQ *
 
-                0.0f,  0.5f,  0.0f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 12 = top left FQ *
-                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 13 = bottom left BQ *
-                0.0f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 14 = bottom left FQ  Left quad *
-                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 15 = top left BQ *
+                0.0f,  0.5f,  0.0f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 12 = top left FQ *
+                0.0f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 13 = bottom left BQ *
+                0.0f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 14 = bottom left FQ  Left quad *
+                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 15 = top left BQ *
 
-                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 16 = top right BQ *
-                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 17 = top left FQ *
-                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 18 = top right FQ * Top quad
-                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 19 = top left BQ *
+                0.5f,  0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 16 = top right BQ *
+                0.0f,  0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 17 = top left FQ *
+                0.5f,  0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 18 = top right FQ * Top quad
+                0.0f,  0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 19 = top left BQ *
 
-                0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,// top right 20 = bottom right BQ *
-                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,// bottom left 21 = bottom left FQ *
-                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,// bottom right 22 = bottom right FQ * Bottom quad
-                0.0f, -0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,// top left 23 = bottom left BQ
+                0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 0.0f,      1.0f, 1.0f,      1,// top right 20 = bottom right BQ *
+                0.0f, -0.5f,  0.0f,     0.0f, 0.0f, 1.0f,      0.0f, 0.0f,      1,// bottom left 21 = bottom left FQ *
+                0.5f, -0.5f,  0.0f,     1.0f, 0.0f, 0.0f,      1.0f, 0.0f,      1,// bottom right 22 = bottom right FQ * Bottom quad
+                0.0f, -0.5f, -0.5f,     0.5f, 0.0f, 0.5f,      0.0f, 1.0f,      1,// top left 23 = bottom left BQ
         };
 
         int[] indices = {
@@ -92,14 +92,18 @@ public class Shader {
             e.printStackTrace();
         }
 
-        byte positionSize = 3;
-        byte colorSize = 3;
-        byte texCoordsSize = 2;
-        int colorOffset = positionSize;
-        int texCoordsOffset = colorOffset + colorSize;
-        int stride = (positionSize + colorSize + texCoordsSize) * Float.BYTES;
+        final byte positionOffset = 0;
+        final byte positionSize = 3;
+        final byte colorSize = 3;
+        final byte texCoordsSize = 2;
+        final byte TEX_ID_SIZE = 1;
 
-        glVertexAttribPointer(0, positionSize, GL_FLOAT, false, stride, 0);
+        final int colorOffset = positionSize;
+        final int texCoordsOffset = colorOffset + colorSize;
+        final int TEX_ID_OFFSET = texCoordsOffset + texCoordsSize;
+        final int stride = (positionSize + colorSize + texCoordsSize + TEX_ID_SIZE) * Float.BYTES;
+
+        glVertexAttribPointer(0, positionSize, GL_FLOAT, false, stride, positionOffset);
         glEnableVertexAttribArray(0);
 
         glVertexAttribPointer(1, colorSize, GL_FLOAT, false, stride, colorOffset * Float.BYTES);
@@ -107,6 +111,9 @@ public class Shader {
 
         glVertexAttribPointer(2, texCoordsSize, GL_FLOAT, false, stride, texCoordsOffset * Float.BYTES);
         glEnableVertexAttribArray(2);
+
+        glVertexAttribPointer(3, TEX_ID_SIZE, GL_FLOAT, false, stride, TEX_ID_OFFSET * Float.BYTES);
+        glEnableVertexAttribArray(3);
     }
 
     public void update(float dt) {

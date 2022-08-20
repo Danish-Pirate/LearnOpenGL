@@ -1,8 +1,4 @@
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL13.*;
 
 public class Level {
     private Shader shader;
@@ -16,14 +12,13 @@ public class Level {
         shader.init();
         shader.compile();
 
-        Texture t1 = new Texture("src/main/resources/images/grass.png", 1);
-        Texture t2 = new Texture("src/main/resources/images/goose.jpg", 2);
+        Texture t1 = new Texture("src/main/resources/images/grass.png");
+        glActiveTexture(GL_TEXTURE0);
 
         shader.uploadTexture("Texture1", 1);
         shader.uploadTexture("Texture2", 2);
 
         camera = new Camera();
-
     }
 
     public void update(float dt) {

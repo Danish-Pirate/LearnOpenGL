@@ -15,7 +15,6 @@ public class Camera {
 
     private float yaw;
     private float pitch;
-    private boolean firstTimeMoved = true;
 
     public Camera() {
         projectionMatrix = new Matrix4f();

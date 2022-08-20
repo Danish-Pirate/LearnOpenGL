@@ -9,11 +9,10 @@ public class Texture {
     private String filepath;
     private int texID;
 
-    public Texture(String filepath, int textureSlot) {
+    public Texture(String filepath) {
         this.filepath = filepath;
-        texID = glGenTextures();
 
-        glActiveTexture(GL_TEXTURE0 + textureSlot);
+        texID = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, texID);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -21,6 +20,8 @@ public class Texture {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+
+        // Loads the texture
         int[] width = {1};
         int[] height = {1};
         int[] channels = {1};
@@ -35,14 +36,13 @@ public class Texture {
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width[0], height[0],
                         0, GL_RGBA, GL_UNSIGNED_BYTE, image);
             } else {
-                throw new IllegalStateException("Unknown number of channels " + filepath);
+                throw new IllegalStateException("Unknown number of channels " + this.filepath);
             }
         } else {
-            throw new IllegalStateException("Could not load image " + filepath);
+            throw new IllegalStateException("Could not load image " + this.filepath);
         }
 
         stbi_image_free(image);
-
     }
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, texID);
