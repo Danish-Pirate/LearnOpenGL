@@ -1,23 +1,16 @@
-import static org.lwjgl.opengl.GL13.*;
-
-public class Level {
+public class Scene {
     private Shader shader;
     private Camera camera;
+    private Renderer renderer;
 
-    public Level() {
+    public Scene() {
         shader = new Shader();
+        renderer = new Renderer();
     }
 
     public void init() {
         shader.init();
         shader.compile();
-
-        glActiveTexture(GL_TEXTURE1);
-        Texture t1 = new Texture("src/main/resources/images/grass.png");
-        glActiveTexture(GL_TEXTURE2);
-        Texture t2 = new Texture("src/main/resources/images/dirt.jpg");
-        glActiveTexture(GL_TEXTURE3);
-        Texture t3 = new Texture("src/main/resources/images/grass_top.jpg");
 
         shader.uploadTexture("Texture1", 1);
         shader.uploadTexture("Texture2", 2);
@@ -28,7 +21,7 @@ public class Level {
 
     public void update(float dt) {
         shader.update(dt);
-
+        renderer.render();
         camera.processPlayerInput(dt);
         shader.uploadMat4f("Projection", camera.getProjectionMatrix());
         shader.uploadMat4f("View", camera.getViewMatrix());

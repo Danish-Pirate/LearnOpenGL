@@ -14,10 +14,10 @@ public class Window {
     private int width;
     private static Window window;
     private long windowID;
-    private Level level;
+    private Scene scene;
 
     private Window() {
-        level = new Level();
+        scene = new Scene();
         title = "OpenGL";
         width = 1280;
         height = 720;
@@ -72,7 +72,7 @@ public class Window {
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
-        level.init();
+        scene.init();
 
     }
 
@@ -87,7 +87,7 @@ public class Window {
             glClearColor(1, 1, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
             glClear(GL_DEPTH_BUFFER_BIT);
-            level.update(dt);
+            scene.update(dt);
             glfwSwapBuffers(windowID);
 
             endTime = (float) glfwGetTime();

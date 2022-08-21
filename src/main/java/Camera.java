@@ -10,7 +10,7 @@ public class Camera {
 
 
     private final Vector3f cameraPosition;
-    private Vector3f cameraFront;
+    private final Vector3f cameraFront;
     private final Vector3f cameraUp;
 
     private float yaw;
